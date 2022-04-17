@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="moveToClearance"
     tools:context=".MainActivity">
 
     <TableLayout
@@ -40,6 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:background="@drawable/menu_button"
+                android:onClick="moveToClearance"
                 android:text="재고 목록"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
