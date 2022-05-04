@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="moveToClearance"
     tools:context=".MainActivity">
 
     <TableLayout
@@ -36,12 +35,12 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/clearanceButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:background="@drawable/menu_button"
-                android:onClick="moveToClearance"
+                android:onClick="onClick"
                 android:text="재고 목록"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -53,12 +52,13 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/receiveBotton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/menu_button"
+                android:onClick="onClick"
                 android:text="입고"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
