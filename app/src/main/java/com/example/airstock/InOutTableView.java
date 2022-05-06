@@ -1,11 +1,8 @@
 package com.example.airstock;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,37 +12,25 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
-public class ClearanceView extends AppCompatActivity {
-
-    private ArrayList<ExampleData> items = new ArrayList<>();
+public class InOutTableView extends AppCompatActivity {
     DBHelper helper;
     SQLiteDatabase db;
     Cursor cursor;
+    int isTableOn = 1;
     String selected;
-    String sql1, sql2;
-    String[] spinnerItems = {"알파벳 순", "입고일 순"};
-    boolean isTableOn = false;
+    String[] spinnerItems = {"입고 순", "출고 순", "입출고 순"};
     private TableLayout tableLayout;
-
-    //입출고목록 버튼 onClick 메소드
-    public void onClick(View view) {
-        Intent intent = new Intent(this, InOutTableView.class);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(), "입출고목록", Toast.LENGTH_SHORT).show();
-    }
+    String sql, sql2, sql3;
 
     public void renderTable(String sql){
         helper = new DBHelper(this);
         db = helper.getReadableDatabase();
         cursor = db.rawQuery(sql, null);
 
-        tableLayout = (TableLayout)findViewById(R.id.clearanceTable);
+        tableLayout = (TableLayout)findViewById(R.id.tableLayout);
         //table 동적 생성
         while(cursor.moveToNext()){
             TableRow tablerow = new TableRow(this);
@@ -86,17 +71,26 @@ public class ClearanceView extends AppCompatActivity {
                     1f
             ));
             tablerow.addView(textView3);
+            TextView textView4 = new TextView(this);
+            textView4.setText(cursor.getString(3));
+            textView4.setGravity(Gravity.CENTER);
+            textView4.setTextSize(14);
+            textView4.setLayoutParams(new TableRow.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    1f
+            ));
+            tablerow.addView(textView4);
             tableLayout.addView(tablerow);
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clearance);
-        sql1 = "select name,count,inDate from contacts order by name";
-        sql2 = "select name,count,inDate from contacts order by inDate";
+        setContentView(R.layout.inout_table);
 
+        sql = "select name,count,inDate,outDate from contacts order by inDate";
+        sql2 = "select name,count,inDate,outDate from contacts order by OutDate";
         //스피너 생성
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -105,32 +99,34 @@ public class ClearanceView extends AppCompatActivity {
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        //알파벳 순, 입고일 순에 따라 목록 보여주는 순서 바꾸기
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 selected = spinnerItems[position];
-                //알파벳 순
-                if(selected == "알파벳 순"){
-                    if(isTableOn) {
+                //입고 순
+                if(selected == "입고 순"){
+                    if(isTableOn == 0) {
                         tableLayout.removeAllViewsInLayout();
-                        isTableOn = false;
+                        isTableOn = 1;
                     }
-                    renderTable(sql1);
+                    renderTable(sql);
                 }
-                //입고일 순
-                else {
+                //출고 순
+                else if(selected == "출고 순"){
                     tableLayout.removeAllViewsInLayout();
                     renderTable(sql2);
-                    isTableOn = true;
+                    isTableOn = 0;
+                }
+                //입출고 순
+                else {
+
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                renderTable(sql1);
+                renderTable(sql);
             }
         });
     }
-
 }
