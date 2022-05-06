@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClearanceView" />
+        <activity android:name=".InOutTableView" />
         <activity android:name=".ReceivingStocks" />
     </application>
 

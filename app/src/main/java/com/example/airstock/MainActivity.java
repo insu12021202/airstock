@@ -11,8 +11,8 @@ import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 Toast.makeText(getApplicationContext(), "입고화면", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.clearanceButton: // 재고정리 메뉴로 이동
-                Intent intent2 = new Intent(this, ClearanceView.class);
-                startActivity(intent2);
-                Toast.makeText(getApplicationContext(), "재고정리화면", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, ClearanceView.class);
+                startActivity(intent3);
+                Toast.makeText(getApplicationContext(), "재고목록화면", Toast.LENGTH_SHORT).show();
                 break;
+
         }
 
     }
