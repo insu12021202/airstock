@@ -37,7 +37,7 @@ public class ClearanceView extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(this, InOutTableView.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "입출고목록", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "입출고 목록", Toast.LENGTH_SHORT).show();
     }
 
     public void renderTable(String sql){

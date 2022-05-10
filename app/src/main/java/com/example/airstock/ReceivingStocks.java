@@ -44,7 +44,7 @@ public class ReceivingStocks extends AppCompatActivity {
     public void receiveListener(View view){
         Intent intent = new Intent(getApplicationContext(), ReceivingStocks.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
     }
     public void insert(View view){
         String name = editName.getText().toString();
@@ -60,7 +60,7 @@ public class ReceivingStocks extends AppCompatActivity {
 
         db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"'" +
                 ", '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
-        Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
 
         editName.setText("");
         editCount.setText("");

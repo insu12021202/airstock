@@ -21,6 +21,8 @@
         <activity android:name=".ClearanceView" />
         <activity android:name=".InOutTableView" />
         <activity android:name=".ReceivingStocks" />
+        <activity android:name=".ReleasingStocks" />
+        <activity android:name=".StockSpec" />
     </application>
 
 </manifest>
