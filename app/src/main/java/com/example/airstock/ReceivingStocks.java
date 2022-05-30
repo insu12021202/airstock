@@ -5,11 +5,16 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class ReceivingStocks extends AppCompatActivity {
@@ -29,6 +34,7 @@ public class ReceivingStocks extends AppCompatActivity {
         } catch (SQLException ex){
             db = helper.getReadableDatabase();
         }
+
         editName = (EditText) findViewById(R.id.name);
         editCount = (EditText) findViewById(R.id.count);
         editInDate = (EditText) findViewById(R.id.inDate);
@@ -39,6 +45,14 @@ public class ReceivingStocks extends AppCompatActivity {
         editOutPrice = (EditText) findViewById(R.id.outPrice);
         editReceiveClient = (EditText) findViewById(R.id.receiveClient);
         editIsPositioned = (EditText) findViewById(R.id.isPositioned);
+
+
+        long tmpTime = System.currentTimeMillis();
+        Date date = new Date(tmpTime);
+        SimpleDateFormat formatTime = new SimpleDateFormat("yyyy/MM/dd");
+        String currentTime = formatTime.format(date);
+
+        editInDate.setText(currentTime);
     }
 
     public void receiveListener(View view){
@@ -47,6 +61,7 @@ public class ReceivingStocks extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
     }
     public void insert(View view){
+
         String name = editName.getText().toString();
         String count = editCount.getText().toString();
         String inDate = editInDate.getText().toString();
@@ -58,8 +73,13 @@ public class ReceivingStocks extends AppCompatActivity {
         String receiveClient = editReceiveClient.getText().toString();
         String isPositioned = editIsPositioned.getText().toString();
 
-        db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"'" +
-                ", '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
+        Toast.makeText(getApplicationContext(), "추가전", Toast.LENGTH_SHORT).show();
+
+        db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"', '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
+
+        db.execSQL("INSERT INTO warehouseDB VALUES (null, '" + name +"', '" + count +"', '" + "" + "', '" +""+ "');");
+
+        //db.execSQL("INSERT INTO inOutDB VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '"+ inDate +"');");
         Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
 
         editName.setText("");
@@ -72,34 +92,5 @@ public class ReceivingStocks extends AppCompatActivity {
         editOutPrice.setText("");
         editReceiveClient.setText("");
         editIsPositioned.setText("");
-    }
-
-    public void search(View view){
-        String name = editName.getText().toString();
-        Cursor cursor;
-
-        cursor = db.rawQuery("SELECT name, count, inDate, outDate, inMemo, outMemo, inPrice, outPrice, receiveClient, isPositioned FROM contacts WHERE name = '" + name + "';", null);
-
-        while (cursor.moveToNext()){
-            String count = cursor.getString(1);
-            String inDate = cursor.getString(2);
-            String outDate = cursor.getString(3);
-            String inMemo = cursor.getString(4);
-            String outMemo = cursor.getString(5);
-            String inPrice = cursor.getString(6);
-            String outPrice = cursor.getString(7);
-            String receiveClient = cursor.getString(8);
-            String isPositioned = cursor.getString(9);
-
-            editCount.setText(count);
-            editInDate.setText(inDate);
-            editOutDate.setText(outDate);
-            editInMemo.setText(inMemo);
-            editOutMemo.setText(outMemo);
-            editInPrice.setText(inPrice);
-            editOutPrice.setText(outPrice);
-            editReceiveClient.setText(receiveClient);
-            editIsPositioned.setText(isPositioned);
-        }
     }
 }
