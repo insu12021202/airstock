@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="350dp">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="360dp"
+        android:layout_height="354dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/purple_500"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="수량 및 층수 입력"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="201dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/stockNum"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="수량을 입력하세요."
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/stockFloor"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="층수를 입력하세요."
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/myStockbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onPopUpClosed"
+            android:text="확인" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
