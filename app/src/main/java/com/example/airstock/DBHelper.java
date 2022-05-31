@@ -1,6 +1,7 @@
 package com.example.airstock;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -21,7 +22,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override   // 데이터베이스 업그레이드
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS contact");
+        db.execSQL("DROP TABLE IF EXISTS contacts");
         onCreate(db);
     }
+
+    //----------------------------------------------------------------------
+
+    Cursor readAllData(){
+        String query = "SELECT * FROM contacts ";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public void deleteData(String name1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM contacts WHERE name = '" + name1 +"';");
+    }
+
+    public void changeCount(String name1, String count1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE contacts SET count = '" + count1 + "'WHERE name = '" + name1 + "';";
+        db.execSQL(sql);
+    }
+
 }
+
+
