@@ -1,5 +1,7 @@
 package com.example.airstock;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class StockSpec extends AppCompatActivity {
+public class StockSpec extends ReleasingStocks {
 
     EditText release_input;
     Button release_button;
+
     String id, name, count, inDate, outDate, inMemo, outMemo, inPrice, outPrice, receiveClient, isPositioned;
 
     @Override
@@ -30,8 +33,6 @@ public class StockSpec extends AppCompatActivity {
         getAndSetIntentData();
 
         release_input = findViewById(R.id.releasecount);
-
-
         release_button = findViewById(R.id.release_button);
         release_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,20 +44,27 @@ public class StockSpec extends AppCompatActivity {
                     TextView countText = (TextView) findViewById(R.id.countText2);
                     count = String.valueOf(stockCount-stockReleaseAmount);
                     countText.setText(count);
+
                     DBHelper myDB = new DBHelper(StockSpec.this);
                     myDB.changeCount(name, count);
-                    Toast.makeText(getApplicationContext(), "출고되었습니다", Toast.LENGTH_SHORT).show();
 
+                    Toast.makeText(getApplicationContext(), "출고되었습니다", Toast.LENGTH_SHORT).show();
                 }
                 else if (stockReleaseAmount == stockCount){
+                    TextView countText = (TextView) findViewById(R.id.countText2);
+                    count = String.valueOf(stockCount-stockReleaseAmount);
+                    countText.setText(count);
+
                     DBHelper myDB = new DBHelper(StockSpec.this);
                     myDB.deleteData(name);
+
                     Toast.makeText(getApplicationContext(), "출고되었습니다.", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "재고 수량보다 많이 출고할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+                //어댑터 새로고침
 
             }
         });

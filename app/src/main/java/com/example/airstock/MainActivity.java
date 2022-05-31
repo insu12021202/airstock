@@ -38,12 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent4);
                 Toast.makeText(getApplicationContext(), "출고 화면", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.myStockButton: // 내 창고 메뉴로 이동
-                Intent intent5 = new Intent(this, MyStockView.class);
-                startActivity(intent5);
-                Toast.makeText(getApplicationContext(), "내창고 화면", Toast.LENGTH_SHORT).show();
-                break;
-
 
         }
 
