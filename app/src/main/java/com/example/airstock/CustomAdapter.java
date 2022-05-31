@@ -32,27 +32,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Activity activity;
     private  List<StockList> stockList = new ArrayList<>();
     private List<StockList> stockListAll = new ArrayList<>();
-//    private ArrayList stock_id, stock_name, stock_count, stock_inDate, stock_outDate, stock_inMemo,
-//            stock_outMemo, stock_inPrice, stock_outPrice, stock_receiveClient, stock_isPositioned;
 
-    CustomAdapter(Activity activity, Context context, /* ArrayList stock_id, ArrayList stock_name,
-                  ArrayList stock_count, ArrayList stock_inDate, ArrayList stock_outDate,
-                  ArrayList stock_inMemo, ArrayList stock_outMemo, ArrayList stock_inPrice,
-                  ArrayList stock_outPrice, ArrayList stock_receiveClient, ArrayList stock_isPositioned */
-    ArrayList<StockList> stockList){
+    CustomAdapter(Activity activity, Context context, ArrayList<StockList> stockList){
         this.activity = activity;
         this.context = context;
-//        this.stock_id = stock_id;
-//        this.stock_name = stock_name;
-//        this.stock_count = stock_count;
-//        this.stock_inDate = stock_inDate;
-//        this.stock_outDate = stock_outDate;
-//        this.stock_inMemo = stock_inMemo;
-//        this.stock_outMemo = stock_outMemo;
-//        this.stock_inPrice = stock_inPrice;
-//        this.stock_outPrice = stock_outPrice;
-//        this.stock_receiveClient = stock_receiveClient;
-//        this.stock_isPositioned = stock_isPositioned;
 
         this.stockList = stockList;
         this.stockListAll = new ArrayList<>(stockList);
@@ -69,10 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-//        holder.stock_id_txt.setText(String.valueOf(stock_id.get(position)));
-//        holder.stock_name_txt.setText(String.valueOf(stock_name.get(position)));
-//        holder.stock_inMemo_txt.setText(String.valueOf(stock_inMemo.get(position)));
-//        holder.stock_count_txt.setText(String.valueOf(stock_count.get(position)));
+
         StockList slist =  stockList.get(position);
         holder.stock_id_txt.setText(String.valueOf(slist.getId()));
         holder.stock_name_txt.setText(String.valueOf(slist.getName()));
@@ -85,18 +65,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
                 Intent intent = new Intent(context, StockSpec.class);
 
-//                intent.putExtra("id", String.valueOf(stock_id.get(holder.getAdapterPosition())));
-//                intent.putExtra("name", String.valueOf(stock_name.get(holder.getAdapterPosition())));
-//                intent.putExtra("count", String.valueOf(stock_count.get(holder.getAdapterPosition())));
-//                intent.putExtra("inDate", String.valueOf(stock_inDate.get(holder.getAdapterPosition())));
-//                intent.putExtra("outDate", String.valueOf(stock_outDate.get(holder.getAdapterPosition())));
-//                intent.putExtra("inMemo", String.valueOf(stock_inMemo.get(holder.getAdapterPosition())));
-//                intent.putExtra("outMemo", String.valueOf(stock_outMemo.get(holder.getAdapterPosition())));
-//                intent.putExtra("inPrice", String.valueOf(stock_inPrice.get(holder.getAdapterPosition())));
-//                intent.putExtra("outPrice", String.valueOf(stock_outPrice.get(holder.getAdapterPosition())));
-//                intent.putExtra("receiveClient", String.valueOf(stock_receiveClient.get(holder.getAdapterPosition())));
-//                intent.putExtra("isPositioned", String.valueOf(stock_isPositioned.get(holder.getAdapterPosition())));
-//
                 intent.putExtra("id", String.valueOf(slist.getId()));
                 intent.putExtra("name", String.valueOf(slist.getName()));
                 intent.putExtra("count", String.valueOf(slist.getCount()));
@@ -112,8 +80,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent, 1);
             }
         });
-
-
     }
 
     @Override

@@ -28,8 +28,7 @@ public class ReleasingStocks extends AppCompatActivity {
     TextView no_data;
 
     DBHelper myDB;
-//    ArrayList<String> stock_id, stock_name, stock_count, stock_inDate, stock_outDate, stock_inMemo,
-//            stock_outMemo, stock_inPrice, stock_outPrice, stock_receiveClient, stock_isPositioned;
+
     ArrayList<StockList> stockList = new ArrayList<>();
     CustomAdapter customAdapter;
 
@@ -44,17 +43,6 @@ public class ReleasingStocks extends AppCompatActivity {
 
 
         myDB = new DBHelper(ReleasingStocks.this);
-//        stock_id = new ArrayList<>();
-//        stock_name = new ArrayList<>();
-//        stock_count = new ArrayList<>();
-//        stock_inDate = new ArrayList<>();
-//        stock_outDate = new ArrayList<>();
-//        stock_inMemo = new ArrayList<>();
-//        stock_outMemo = new ArrayList<>();
-//        stock_inPrice = new ArrayList<>();
-//        stock_outPrice = new ArrayList<>();
-//        stock_receiveClient = new ArrayList<>();
-//        stock_isPositioned = new ArrayList<>();
 
         setSearchView();
         storeDataInArray();
@@ -66,31 +54,6 @@ public class ReleasingStocks extends AppCompatActivity {
     }
 
     //----------------------------------------------------------------------------------
-
-//    void storeDataInArrays() {
-//        Cursor cursor = myDB.readAllData();
-//        if (cursor.getCount() == 0) {
-//            empty_imageview.setVisibility(View.VISIBLE);
-//            no_data.setVisibility(View.VISIBLE);
-//        } else {
-//            while (cursor.moveToNext()) {
-//                stock_id.add(cursor.getString(0));
-//                stock_name.add(cursor.getString(1));
-//                stock_count.add(cursor.getString(2));
-//                stock_inDate.add(cursor.getString(3));
-//                stock_outDate.add(cursor.getString(4));
-//                stock_inMemo.add(cursor.getString(5));
-//                stock_outMemo.add(cursor.getString(6));
-//                stock_inPrice.add(cursor.getString(7));
-//                stock_outPrice.add(cursor.getString(8));
-//                stock_receiveClient.add(cursor.getString(9));
-//                stock_isPositioned.add(cursor.getString(10));
-//
-//            }
-//            empty_imageview.setVisibility(View.GONE);
-//            no_data.setVisibility(View.GONE);
-//        }
-//    }
 
     void storeDataInArray(){
         Cursor cursor = myDB.readAllData();

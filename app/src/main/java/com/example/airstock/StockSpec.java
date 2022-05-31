@@ -33,8 +33,6 @@ public class StockSpec extends ReleasingStocks {
         getAndSetIntentData();
 
         release_input = findViewById(R.id.releasecount);
-
-
         release_button = findViewById(R.id.release_button);
         release_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +47,6 @@ public class StockSpec extends ReleasingStocks {
 
                     DBHelper myDB = new DBHelper(StockSpec.this);
                     myDB.changeCount(name, count);
-
-                    //CustomAdapter의 stock_count를 변경해준다.
-
 
                     Toast.makeText(getApplicationContext(), "출고되었습니다", Toast.LENGTH_SHORT).show();
                 }
@@ -70,7 +65,7 @@ public class StockSpec extends ReleasingStocks {
                     Toast.makeText(getApplicationContext(), "재고 수량보다 많이 출고할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 //어댑터 새로고침
-                customAdapter.notifyDataSetChanged();
+
             }
         });
     }
