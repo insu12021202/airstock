@@ -21,17 +21,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.receiveBotton: // 입고 메뉴로 이동
+            case R.id.receiveButton: // 입고 메뉴로 이동
                 Intent intent1 = new Intent(this, ReceivingStocks.class);
                 startActivity(intent1);
-                Toast.makeText(getApplicationContext(), "입고화면", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "입고 화면", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.clearanceButton: // 재고정리 메뉴로 이동
                 Intent intent3 = new Intent(this, ClearanceView.class);
                 startActivity(intent3);
-                Toast.makeText(getApplicationContext(), "재고목록화면", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "재고 목록 화면", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.releaseButton: // 재고정리 메뉴로 이동
+                Intent intent4 = new Intent(this, ReleasingStocks.class);
+                startActivity(intent4);
+                Toast.makeText(getApplicationContext(), "출고 화면", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.myStockButton: // 내 창고 메뉴로 이동
+                Intent intent5 = new Intent(this, MyStockView.class);
+                startActivity(intent5);
+                Toast.makeText(getApplicationContext(), "내창고 화면", Toast.LENGTH_SHORT).show();
+                break;
+
 
         }
 

@@ -58,7 +58,7 @@ public class ReceivingStocks extends AppCompatActivity {
     public void receiveListener(View view){
         Intent intent = new Intent(getApplicationContext(), ReceivingStocks.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
     }
     public void insert(View view){
 
@@ -73,6 +73,7 @@ public class ReceivingStocks extends AppCompatActivity {
         String receiveClient = editReceiveClient.getText().toString();
         String isPositioned = editIsPositioned.getText().toString();
 
+<<<<<<< HEAD
         Toast.makeText(getApplicationContext(), "추가전", Toast.LENGTH_SHORT).show();
 
         db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"', '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
@@ -81,6 +82,11 @@ public class ReceivingStocks extends AppCompatActivity {
 
         //db.execSQL("INSERT INTO inOutDB VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '"+ inDate +"');");
         Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
+=======
+        db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"'" +
+                ", '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
+        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
+>>>>>>> 83ecbf2a87d1d3db1aa56da0bd63db020acc3289
 
         editName.setText("");
         editCount.setText("");
