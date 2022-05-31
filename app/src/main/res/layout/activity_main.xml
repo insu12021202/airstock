@@ -25,7 +25,7 @@
             android:background="#FAFAFA">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/myStockButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
