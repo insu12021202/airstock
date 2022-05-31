@@ -38,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent4);
                 Toast.makeText(getApplicationContext(), "출고 화면", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.myStockButton:
+                Intent intent2 = new Intent(this, MyStockView.class);
+                startActivity(intent2);
+                Toast.makeText(getApplicationContext(), "내 창고", Toast.LENGTH_SHORT).show();
+                break;
         }
 
     }

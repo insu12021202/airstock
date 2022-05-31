@@ -23,6 +23,9 @@
         <activity android:name=".ReceivingStocks" />
         <activity android:name=".ReleasingStocks" />
         <activity android:name=".StockSpec" />
+        <activity android:name=".MyStockView" />
+        <activity android:name=".PopUpInMyStock" android:theme="@android:style/Theme.Dialog"
+            />
     </application>
 
 </manifest>

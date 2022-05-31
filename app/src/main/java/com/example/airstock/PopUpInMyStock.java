@@ -9,7 +9,7 @@ import android.view.Window;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PopUpInMyStock extends AppCompatActivity {
+public class PopUpInMyStock extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
