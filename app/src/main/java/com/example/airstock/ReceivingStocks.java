@@ -73,20 +73,14 @@ public class ReceivingStocks extends AppCompatActivity {
         String receiveClient = editReceiveClient.getText().toString();
         String isPositioned = editIsPositioned.getText().toString();
 
-<<<<<<< HEAD
         Toast.makeText(getApplicationContext(), "추가전", Toast.LENGTH_SHORT).show();
 
         db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"', '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
 
         db.execSQL("INSERT INTO warehouseDB VALUES (null, '" + name +"', '" + count +"', '" + "" + "', '" +""+ "');");
 
-        //db.execSQL("INSERT INTO inOutDB VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '"+ inDate +"');");
+        db.execSQL("INSERT INTO inOutDB VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '"+ inDate +"');");
         Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
-=======
-        db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"'" +
-                ", '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
-        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
->>>>>>> 83ecbf2a87d1d3db1aa56da0bd63db020acc3289
 
         editName.setText("");
         editCount.setText("");

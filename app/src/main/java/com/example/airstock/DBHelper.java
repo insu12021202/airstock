@@ -32,13 +32,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override   // 데이터베이스 업그레이드
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-<<<<<<< HEAD
         db.execSQL("DROP TABLE IF EXISTS defaultDB");
         db.execSQL("DROP TABLE IF EXISTS warehouseDB");
         db.execSQL("DROP TABLE IF EXISTS inOutDB");
-=======
         db.execSQL("DROP TABLE IF EXISTS contacts");
->>>>>>> 83ecbf2a87d1d3db1aa56da0bd63db020acc3289
         onCreate(db);
     }
 
