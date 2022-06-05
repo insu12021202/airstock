@@ -1,5 +1,6 @@
 package com.example.airstock;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MyStockView extends AppCompatActivity {
+    public static final int REQUEST_CODE = 100;
     DBHelper helper;
     SQLiteDatabase db;
     Cursor cursor;
@@ -37,6 +39,17 @@ public class MyStockView extends AppCompatActivity {
         findViewById(R.id.table5).setOnDragListener(new DragListener());
         findViewById(R.id.table6).setOnDragListener(new DragListener());
         displayList();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode != Activity.RESULT_OK) {
+                return;
+            }
+            displayList();
+        }
     }
     public void displayList() {
         //table 동적 생성
@@ -70,7 +83,6 @@ public class MyStockView extends AppCompatActivity {
 
         ListViewAdapter adapter = new ListViewAdapter();
         while (cursor.moveToNext()) {
-            Log.d("alalal", cursor.getString(1) + cursor.getString(3));
             if(cursor.getString(3).equals("")){
                 dragCount = Integer.parseInt(cursor.getString(1));
             }
@@ -106,7 +118,7 @@ public class MyStockView extends AppCompatActivity {
                     intent.putExtra("data", dragEvent.getClipData().getItemAt(0).getText());
                     //테이블 포지션 정보 보내기
                     intent.putExtra("position", String.valueOf(view.getId()));
-                    startActivity(intent);
+                    startActivityForResult(intent,REQUEST_CODE);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     displayList();

@@ -48,10 +48,10 @@ public class PopUpInMyStock extends Activity {
             isPositioned = cursor.getString(0);
             Log.d("tagggg", isPositioned);
         }
-        if(isPositioned.equals("")){
+        if(isPositioned.equals("")){ // 재고가 배치된 수량이 없으면 isPositioned 새로 입력
             sql = "UPDATE warehouseDB SET count='" + stockNum.getText() + "', positionIndex='"+ position + "', floorIndex='" + stockFloor.getText()+"' where name='" + data +"'";
             sql2 = "UPDATE contacts SET isPositioned= '" + stockNum.getText() +"' WHERE name= '"+ data +"'";
-        }else{
+        }else{ // 재고가 배치된 수량이 있다면 isPositioned + stockNum 값을 DB에 최신화
             sql = "UPDATE warehouseDB SET count='" + String.valueOf(Integer.parseInt(isPositioned) + Integer.parseInt(stockNum.getText().toString())) + "', positionIndex='"+ position + "', floorIndex='" + stockFloor.getText()+"' where name='" + data +"'";
             sql2 = "UPDATE contacts SET isPositioned= '" + String.valueOf(Integer.parseInt(isPositioned) + Integer.parseInt(stockNum.getText().toString())) +"' WHERE name= '"+ data +"'";
         }

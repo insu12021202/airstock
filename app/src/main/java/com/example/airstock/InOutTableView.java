@@ -31,6 +31,16 @@ public class InOutTableView extends AppCompatActivity {
         cursor = db.rawQuery(sql, null);
 
         tableLayout = (TableLayout)findViewById(R.id.tableLayout);
+
+        TableRow tablerow0 = new TableRow(this);
+        tablerow0.setLayoutParams(new TableRow.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                1f
+
+        ));
+        tablerow0.setMinimumHeight(30);
+
         //table 동적 생성
         while(cursor.moveToNext()){
             TableRow tablerow = new TableRow(this);
@@ -119,7 +129,7 @@ public class InOutTableView extends AppCompatActivity {
                 }
                 //입출고 순
                 else {
-
+                    tableLayout.removeAllViewsInLayout();
                 }
             }
 
