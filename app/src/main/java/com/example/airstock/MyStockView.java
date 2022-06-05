@@ -20,8 +20,9 @@ public class MyStockView extends AppCompatActivity {
     DBHelper helper;
     SQLiteDatabase db;
     Cursor cursor;
-    String sql = "select name,count,inDate from contacts order by name";
+    String sql = "select name,count,inDate,isPositioned from contacts order by name";
     ListView listView;
+    int dragCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,15 @@ public class MyStockView extends AppCompatActivity {
         //table에 OnDragListener 세팅
         findViewById(R.id.table1).setOnDragListener(new DragListener());
         findViewById(R.id.table2).setOnDragListener(new DragListener());
-
+        findViewById(R.id.table3).setOnDragListener(new DragListener());
+        findViewById(R.id.table4).setOnDragListener(new DragListener());
+        findViewById(R.id.table5).setOnDragListener(new DragListener());
+        findViewById(R.id.table6).setOnDragListener(new DragListener());
+        displayList();
+    }
+    public void displayList() {
         //table 동적 생성
         listView = findViewById(R.id.listView);
-        displayList();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -57,9 +63,6 @@ public class MyStockView extends AppCompatActivity {
                 view.setVisibility(View.INVISIBLE);
             }
         });
-
-    }
-    void displayList() {
         //DB 생성 및 cursor 이용
         helper = new DBHelper(this);
         db = helper.getReadableDatabase();
@@ -67,7 +70,14 @@ public class MyStockView extends AppCompatActivity {
 
         ListViewAdapter adapter = new ListViewAdapter();
         while (cursor.moveToNext()) {
-            adapter.addItemToList(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+            Log.d("alalal", cursor.getString(1) + cursor.getString(3));
+            if(cursor.getString(3).equals("")){
+                dragCount = Integer.parseInt(cursor.getString(1));
+            }
+            else{
+                dragCount = Integer.parseInt(cursor.getString(1)) - Integer.parseInt(cursor.getString(3));
+            }
+            adapter.addItemToList(cursor.getString(0), Integer.toString(dragCount), cursor.getString(2));
         }
 
         listView.setAdapter(adapter);
@@ -92,7 +102,10 @@ public class MyStockView extends AppCompatActivity {
                     Log.d("DragListener",  dragEvent.getClipData().getItemAt(0).getText() + "들어왔음");
                     //재고 수량과 층수를 입력할 팝업 창 띄우기
                     Intent intent = new Intent(MyStockView.this, PopUpInMyStock.class);
+                    //재고 이름 보내기
                     intent.putExtra("data", dragEvent.getClipData().getItemAt(0).getText());
+                    //테이블 포지션 정보 보내기
+                    intent.putExtra("position", String.valueOf(view.getId()));
                     startActivity(intent);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:

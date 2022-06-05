@@ -77,15 +77,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/table1"
-        android:layout_width="53dp"
-        android:layout_height="92dp"
+        android:layout_width="92dp"
+        android:layout_height="53dp"
         android:background="@drawable/table_border"
         app:layout_constraintBottom_toBottomOf="@+id/myGLview"
         app:layout_constraintEnd_toEndOf="@+id/myGLview"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="@+id/myGLview"
         app:layout_constraintTop_toTopOf="@+id/myGLview"
-        app:layout_constraintVertical_bias="0.086"/>
+        app:layout_constraintVertical_bias="0.086" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/table2"
@@ -94,10 +94,66 @@
         android:background="@drawable/table_border"
         app:layout_constraintBottom_toBottomOf="@+id/myGLview"
         app:layout_constraintEnd_toEndOf="@+id/myGLview"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="@+id/myGLview"
         app:layout_constraintTop_toBottomOf="@+id/table1"
-        app:layout_constraintVertical_bias="0.127">
+        app:layout_constraintVertical_bias="0.214">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table3"
+        android:layout_width="92dp"
+        android:layout_height="53dp"
+        android:background="@drawable/table_border"
+        app:layout_constraintBottom_toBottomOf="@+id/myGLview"
+        app:layout_constraintEnd_toEndOf="@+id/myGLview"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="@+id/myGLview"
+        app:layout_constraintTop_toTopOf="@+id/myGLview"
+        app:layout_constraintVertical_bias="0.085">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table4"
+        android:layout_width="53dp"
+        android:layout_height="92dp"
+        android:background="@drawable/table_border"
+        app:layout_constraintBottom_toBottomOf="@+id/myGLview"
+        app:layout_constraintEnd_toEndOf="@+id/myGLview"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="@+id/myGLview"
+        app:layout_constraintTop_toBottomOf="@+id/table1"
+        app:layout_constraintVertical_bias="0.214">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table5"
+        android:layout_width="53dp"
+        android:layout_height="92dp"
+        android:background="@drawable/table_border"
+        app:layout_constraintBottom_toBottomOf="@+id/myGLview"
+        app:layout_constraintEnd_toEndOf="@+id/myGLview"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="@+id/myGLview"
+        app:layout_constraintTop_toBottomOf="@+id/table1"
+        app:layout_constraintVertical_bias="0.887">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table6"
+        android:layout_width="53dp"
+        android:layout_height="92dp"
+        android:background="@drawable/table_border"
+        app:layout_constraintBottom_toBottomOf="@+id/myGLview"
+        app:layout_constraintEnd_toEndOf="@+id/myGLview"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="@+id/myGLview"
+        app:layout_constraintTop_toBottomOf="@+id/table1"
+        app:layout_constraintVertical_bias="0.887">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
