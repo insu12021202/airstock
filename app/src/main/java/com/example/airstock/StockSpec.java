@@ -5,7 +5,10 @@ import static android.content.ContentValues.TAG;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class StockSpec extends ReleasingStocks {
 
@@ -24,6 +31,7 @@ public class StockSpec extends ReleasingStocks {
     Button release_button;
 
     String id, name, count, inDate, outDate, inMemo, outMemo, inPrice, outPrice, receiveClient, isPositioned;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,7 +73,7 @@ public class StockSpec extends ReleasingStocks {
                     Toast.makeText(getApplicationContext(), "재고 수량보다 많이 출고할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 //어댑터 새로고침
-
+                customAdapter.updateStockListItems(stockList);
             }
         });
     }
