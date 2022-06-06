@@ -26,6 +26,8 @@
         <activity android:name=".MyStockView" />
         <activity android:name=".PopUpInMyStock" android:theme="@android:style/Theme.Dialog"
             />
+        <activity android:name=".PopUpStockInfo" android:theme="@android:style/Theme.Dialog"
+            />
     </application>
 
 </manifest>
