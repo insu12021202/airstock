@@ -1,13 +1,9 @@
 package com.example.airstock;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +16,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> implements Filterable{
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> implements Filterable {
 
     private Context context;
     private Activity activity;
-    private  List<StockList> stockList = new ArrayList<>();
+    private List<StockList> stockList = new ArrayList<>();
     private List<StockList> stockListAll = new ArrayList<>();
 
     CustomAdapter(Activity activity, Context context, ArrayList<StockList> stockList){
@@ -130,7 +127,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             super(itemView);
             stock_id_txt = itemView.findViewById(R.id.stock_id_txt);
             stock_name_txt = itemView.findViewById(R.id.stock_name_txt);
-            stock_inMemo_txt = itemView.findViewById(R.id.stock_inMemo_txt);
+            stock_inMemo_txt = itemView.findViewById(R.id.stock_inDate_txt);
             stock_count_txt = itemView.findViewById(R.id.stock_count_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
@@ -138,6 +135,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             mainLayout.setAnimation(translate_anim);
         }
 
+    }
+
+    public void updateStockListItems(List<StockList> stocks) {
+        final StockDiffCallback diffCallback = new StockDiffCallback(this.stockList, stocks);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        this.stockList.clear();
+        this.stockList.addAll(stocks);
+        diffResult.dispatchUpdatesTo(this);
     }
 
 

@@ -3,6 +3,7 @@ package com.example.airstock;
 import static android.content.ContentValues.TAG;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,7 @@ public class ReleasingStocks extends AppCompatActivity {
         setContentView(R.layout.release_stocks);
 
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
 
@@ -50,7 +53,6 @@ public class ReleasingStocks extends AppCompatActivity {
         customAdapter = new CustomAdapter(ReleasingStocks.this, this, stockList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ReleasingStocks.this));
-
     }
 
     //----------------------------------------------------------------------------------

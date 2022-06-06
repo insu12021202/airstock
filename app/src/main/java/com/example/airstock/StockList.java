@@ -114,4 +114,26 @@ public class StockList {
         this.receiveClient = receiveClient;
         this.isPositioned = isPositioned;
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) return true;
+//        if (obj == null || getClass() != obj.getClass()) return false;
+//
+//        StockList stock = (StockList) obj;
+//
+//        if (id != stock.id) return false;
+//        if (!count.equalsIgnoreCase(stock.count)) return false;
+//        return name != null ? name.equals(stock.name) : stock.name == null;
+//
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        int result = Integer.parseInt(id);
+//        result = result + (name != null ? name.hashCode() : 0);
+//        result = result + count.hashCode();
+//        return result;
+//    }
+
 }
