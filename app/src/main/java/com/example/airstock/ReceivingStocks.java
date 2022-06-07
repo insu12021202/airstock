@@ -20,6 +20,7 @@ import java.util.Date;
 public class ReceivingStocks extends AppCompatActivity {
     DBHelper helper;
     SQLiteDatabase db;
+    Cursor cursor;
     EditText editName, editCount, editInDate, editOutDate, editInMemo, editOutMemo, editInPrice,
             editOutPrice, editReceiveClient, editIsPositioned;
 
@@ -55,13 +56,7 @@ public class ReceivingStocks extends AppCompatActivity {
         editInDate.setText(currentTime);
     }
 
-    public void receiveListener(View view){
-        Intent intent = new Intent(getApplicationContext(), ReceivingStocks.class);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(), "추가 완료", Toast.LENGTH_SHORT).show();
-    }
     public void insert(View view){
-
         String name = editName.getText().toString();
         String count = editCount.getText().toString();
         String inDate = editInDate.getText().toString();
@@ -73,12 +68,8 @@ public class ReceivingStocks extends AppCompatActivity {
         String receiveClient = editReceiveClient.getText().toString();
         String isPositioned = editIsPositioned.getText().toString();
 
-        Toast.makeText(getApplicationContext(), "추가전", Toast.LENGTH_SHORT).show();
-
         db.execSQL("INSERT INTO contacts VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '" + inMemo +"', '" + outMemo +"', '" + inPrice +"', '" + outPrice +"', '" + receiveClient +"', '" + isPositioned +"');");
-
         db.execSQL("INSERT INTO warehouseDB VALUES (null, '" + name +"', '" + count +"', '" + "" + "', '" +""+ "');");
-
         db.execSQL("INSERT INTO inOutDB VALUES (null, '" + name +"', '" + count +"', '" + inDate +"', '" + outDate +"', '"+ inDate +"');");
         Toast.makeText(getApplicationContext(), "추가완료", Toast.LENGTH_SHORT).show();
 
