@@ -23,8 +23,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE contacts (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " name TEXT, count TEXT, inDate TEXT, outDate TEXT, inMemo TEXT, outMemo TEXT, inPrice TEXT, outPrice TEXT," +
                 " receiveClinet TEXT, isPositioned TEXT )");
+
         db.execSQL("CREATE TABLE warehouseDB (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " name TEXT, count TEXT, positionIndex TEXT, floorIndex TEXT)" );
+
         db.execSQL("CREATE TABLE inOutDB (_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + "" +
                 " name TEXT, count TEXT, inDate TEXT, outDate TEXT, inOutDate TEXT)");
         Log.v("Database create!! ", "success");

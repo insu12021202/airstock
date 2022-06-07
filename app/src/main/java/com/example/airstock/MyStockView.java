@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -134,5 +135,10 @@ public class MyStockView extends AppCompatActivity {
         }
     }
 
+    public void mOnPopupClick (View v){
+        Intent intent = new Intent(MyStockView.this, PopUpStockInfo.class);
+        intent.putExtra("position1", String.valueOf(v.getId()));
+        startActivity(intent);
+    }
 
 }
