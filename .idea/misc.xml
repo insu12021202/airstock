@@ -19,10 +19,15 @@
         <entry key="app/src/main/res/layout/inout_table.xml" value="0.24104156494140624" />
         <entry key="app/src/main/res/layout/inouttable.xml" value="0.22268112846042798" />
         <entry key="app/src/main/res/layout/listview.xml" value="0.17300724637681159" />
-        <entry key="app/src/main/res/layout/my_stock.xml" value="0.17300724637681159" />
+        <entry key="app/src/main/res/layout/my_row.xml" value="0.5620471014492754" />
+        <entry key="app/src/main/res/layout/my_stock.xml" value="0.4241486068111455" />
         <entry key="app/src/main/res/layout/popup_mystock.xml" value="0.17300724637681159" />
+        <entry key="app/src/main/res/layout/popup_row.xml" value="0.5620471014492754" />
+        <entry key="app/src/main/res/layout/popup_search.xml" value="0.5620471014492754" />
+        <entry key="app/src/main/res/layout/popup_stockrack.xml" value="0.5620471014492754" />
         <entry key="app/src/main/res/layout/recieve_stocks.xml" value="0.3452157598499062" />
-        <entry key="app/src/main/res/layout/specific_stocks.xml" value="0.17300724637681159" />
+        <entry key="app/src/main/res/layout/release_stocks.xml" value="0.5620471014492754" />
+        <entry key="app/src/main/res/layout/specific_stocks.xml" value="0.5" />
       </map>
     </option>
   </component>

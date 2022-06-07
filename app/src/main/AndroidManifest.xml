@@ -28,6 +28,7 @@
             />
         <activity android:name=".PopUpStockInfo" android:theme="@android:style/Theme.Dialog"
             />
+        <activity android:name=".PopUpSearch" android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>

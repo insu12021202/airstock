@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,10 +14,14 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class MyStockView extends AppCompatActivity {
     public static final int REQUEST_CODE = 100;
@@ -44,12 +49,40 @@ public class MyStockView extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Drawable targetShape = getResources().getDrawable(R.color.purple_200);
+        ArrayList<String> positionIndexList = new ArrayList<>();
 
         if (requestCode == REQUEST_CODE) {
             if (resultCode != Activity.RESULT_OK) {
                 return;
             }
             displayList();
+        }
+        if (requestCode == 1 && resultCode == RESULT_OK){
+            positionIndexList = (ArrayList<String>)data.getSerializableExtra("positionIndexList");
+            String index;
+            for(int i =0; i<positionIndexList.size(); i++){
+                index = positionIndexList.get(i);
+                Toast.makeText(getApplicationContext(), positionIndexList.get(i), Toast.LENGTH_SHORT).show();
+                if(index.equals(Integer.toString(R.id.table1))){
+                    findViewById(R.id.table1).setBackground(targetShape);
+                }
+                if(index.equals(Integer.toString(R.id.table2))){
+                    findViewById(R.id.table2).setBackground(targetShape);
+                }
+                if(index.equals(Integer.toString(R.id.table3))){
+                    findViewById(R.id.table3).setBackground(targetShape);
+                }
+                if(index.equals(Integer.toString(R.id.table4))){
+                    findViewById(R.id.table4).setBackground(targetShape);
+                }
+                if(index.equals(Integer.toString(R.id.table5))){
+                    findViewById(R.id.table5).setBackground(targetShape);
+                }
+                if(index.equals(Integer.toString(R.id.table6))){
+                    findViewById(R.id.table6).setBackground(targetShape);
+                }
+            }
         }
     }
     public void displayList() {
@@ -141,4 +174,8 @@ public class MyStockView extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToPopUpSearch(View view){
+        Intent intent = new Intent(this, PopUpSearch.class);
+        startActivityForResult(intent, 1);
+    }
 }
