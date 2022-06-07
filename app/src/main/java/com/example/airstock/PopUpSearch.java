@@ -44,13 +44,11 @@ public class PopUpSearch extends Activity {
         }
         Cursor cursor = database.rawQuery("select name, positionIndex from warehouseDB", null);
 
-        // db에서 재고 이름 검색 및 찾는 재고가 있으면 하이라이트
-        Toast.makeText(getApplicationContext(), "검색중...", Toast.LENGTH_SHORT).show();
+        // db에서 재고 이름 검색
         while(cursor.moveToNext()){
             searchName = cursor.getString(0);
             searchIndex = cursor.getString(1);
             if(wantedName.equals(searchName)){
-                Toast.makeText(getApplicationContext(), "찾으시는 재고가 창고에 있습니다" , Toast.LENGTH_SHORT).show();
                 if(searchIndex.equals(Integer.toString(R.id.table1))){
                     positionIndexList.add(Integer.toString(R.id.table1));
                     Toast.makeText(getApplicationContext(), "찾으시는 재고는 1번 선반에 있습니다", Toast.LENGTH_SHORT).show();
@@ -77,7 +75,6 @@ public class PopUpSearch extends Activity {
                 }
             }
         }
-        Toast.makeText(getApplicationContext(), "검색완료", Toast.LENGTH_SHORT).show();
         intent.putExtra("positionIndexList", positionIndexList);
         setResult(RESULT_OK, intent);
         finish();

@@ -63,7 +63,6 @@ public class MyStockView extends AppCompatActivity {
             String index;
             for(int i =0; i<positionIndexList.size(); i++){
                 index = positionIndexList.get(i);
-                Toast.makeText(getApplicationContext(), positionIndexList.get(i), Toast.LENGTH_SHORT).show();
                 if(index.equals(Integer.toString(R.id.table1))){
                     findViewById(R.id.table1).setBackground(targetShape);
                 }
