@@ -22,8 +22,10 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 public class StockSpec extends ReleasingStocks {
 
@@ -80,6 +82,12 @@ public class StockSpec extends ReleasingStocks {
 
 
     void getAndSetIntentData() {
+        // 현재 기기의 시간을 받아옴
+        long tmpTime = System.currentTimeMillis();
+        Date date = new Date(tmpTime);
+        SimpleDateFormat formatTime = new SimpleDateFormat("yyyy/MM/dd");
+        String currentTime = formatTime.format(date);
+
         //Getting Data from Intent
         id = getIntent().getStringExtra("id");
         name = getIntent().getStringExtra("name");
@@ -92,6 +100,9 @@ public class StockSpec extends ReleasingStocks {
         outPrice = getIntent().getStringExtra("outPrice");
         receiveClient = getIntent().getStringExtra("receiveClient");
         isPositioned = getIntent().getStringExtra("isPositioned");
+
+        // 출고 날짜를 현재 날짜로 설정
+        outDate = currentTime;
 
         TextView nameText = (TextView) findViewById(R.id.nameText2);
         TextView countText = (TextView) findViewById(R.id.countText2);
