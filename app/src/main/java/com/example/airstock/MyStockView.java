@@ -88,6 +88,9 @@ public class MyStockView extends AppCompatActivity {
             }
             else{
                 dragCount = Integer.parseInt(cursor.getString(1)) - Integer.parseInt(cursor.getString(3));
+                if(dragCount < 0) {
+                    dragCount = 0;
+                }
             }
             adapter.addItemToList(cursor.getString(0), Integer.toString(dragCount), cursor.getString(2));
         }
