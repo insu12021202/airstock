@@ -64,7 +64,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="수량"
+                android:text="배치 가능 수량"
                 android:textAlignment="center" />
 
             <TextView

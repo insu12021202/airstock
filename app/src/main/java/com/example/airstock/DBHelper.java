@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override   // 데이터베이스와 초기 데이터 생성
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE contacts (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " name TEXT, count TEXT, inDate TEXT, outDate TEXT, inMemo TEXT, outMemo TEXT, inPrice TEXT, outPrice TEXT," +
+                " name TEXT, count INT, inDate TEXT, outDate TEXT, inMemo TEXT, outMemo TEXT, inPrice TEXT, outPrice TEXT," +
                 " receiveClinet TEXT, isPositioned TEXT )");
 
         db.execSQL("CREATE TABLE warehouseDB (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -59,7 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM contacts WHERE name = '" + name1 +"';");
     }
 
-    public void changeCount(String name1, String count1){
+    public void changeCount(String name1, Integer count1){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE contacts SET count = '" + count1 + "'WHERE name = '" + name1 + "';";
         db.execSQL(sql);

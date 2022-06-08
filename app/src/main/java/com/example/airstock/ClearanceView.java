@@ -29,7 +29,7 @@ public class ClearanceView extends AppCompatActivity {
     Cursor cursor;
     String selected;
     String sql1, sql2;
-    String[] spinnerItems = {"알파벳 순", "입고일 순"};
+    String[] spinnerItems = {"알파벳 순", "수량 순"};
     boolean isTableOn = false;
     private TableLayout tableLayout;
 
@@ -95,7 +95,7 @@ public class ClearanceView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clearance);
         sql1 = "select name,count,inDate from contacts order by name";
-        sql2 = "select name,count,inDate from contacts order by inDate";
+        sql2 = "select name,count,inDate from contacts order by count DESC";
 
         //스피너 생성
         Spinner spinner = findViewById(R.id.spinner);
@@ -118,7 +118,7 @@ public class ClearanceView extends AppCompatActivity {
                     }
                     renderTable(sql1);
                 }
-                //입고일 순
+                //수량 순
                 else {
                     tableLayout.removeAllViewsInLayout();
                     renderTable(sql2);

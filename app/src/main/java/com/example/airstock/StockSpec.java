@@ -56,7 +56,7 @@ public class StockSpec extends ReleasingStocks {
                     countText.setText(count);
 
                     DBHelper myDB = new DBHelper(StockSpec.this);
-                    myDB.changeCount(name, count);
+                    myDB.changeCount(name, stockCount-stockReleaseAmount);
 
                     Toast.makeText(getApplicationContext(), "출고되었습니다", Toast.LENGTH_SHORT).show();
                 }

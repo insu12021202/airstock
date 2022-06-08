@@ -21,7 +21,7 @@ public class InOutTableView extends AppCompatActivity {
     Cursor cursor;
     int isTableOn = 1;
     String selected;
-    String[] spinnerItems = {"입고 순", "출고 순", "입출고 순"};
+    String[] spinnerItems = {"입고 순", "출고 순"};
     private TableLayout tableLayout;
     String sql, sql2, sql3;
 
@@ -100,7 +100,7 @@ public class InOutTableView extends AppCompatActivity {
         setContentView(R.layout.inout_table);
 
         sql = "select name,count,inDate,outDate from contacts order by inDate";
-        sql2 = "select name,count,inDate,outDate from contacts order by OutDate";
+        sql2 = "select name,count,inDate,outDate from contacts order by outDate";
         //스피너 생성
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -126,10 +126,6 @@ public class InOutTableView extends AppCompatActivity {
                     tableLayout.removeAllViewsInLayout();
                     renderTable(sql2);
                     isTableOn = 0;
-                }
-                //입출고 순
-                else {
-                    tableLayout.removeAllViewsInLayout();
                 }
             }
 
