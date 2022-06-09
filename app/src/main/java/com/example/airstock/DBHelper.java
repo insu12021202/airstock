@@ -54,14 +54,76 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+//    Cursor readAllWareHouseData(){
+//        String query = "SELECT * FROM warehouseDB ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = null;
+//        if(db != null){
+//            cursor = db.rawQuery(query, null);
+//        }
+//        return cursor;
+//    }
+
     public void deleteData(String name1){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM contacts WHERE name = '" + name1 +"';");
     }
 
-    public void changeCount(String name1, Integer count1){
+    public void deleteIfZero(String name1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM contacts WHERE name = '" + name1 + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        if (cursor.getString(2).equals(String.valueOf(0))){
+            deleteData(name1);
+        }
+    }
+
+    public void changeCount(String name1, String count1){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE contacts SET count = '" + count1 + "'WHERE name = '" + name1 + "';";
+        db.execSQL(sql);
+    }
+
+    public void deleteWHData(String name1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM warehouseDB WHERE name = '" + name1 +"';");
+    }
+
+    public void changeWHCount(String name1, String count1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE warehouseDB SET count = '" + count1 + "'WHERE name = '" + name1 + "';";
+        db.execSQL(sql);
+    }
+
+    public void updateIsPositioned(String name1, String isPositioned1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE contacts SET isPositioned = '" + isPositioned1 + "'WHERE name = '" + name1 + "';";
+        db.execSQL(sql);
+    }
+
+//    public void updateWHIsPositioned(String name1, Integer isPositioned1){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String sql = "UPDATE warehouseDB SET isPositioned = '" + isPositioned1 + "'WHERE name = '" + name1 + "';";
+//        db.execSQL(sql);
+//    }
+
+    public void updateOutDate(String name1, String outDate1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE contacts SET outDate = '" + outDate1 + "'WHERE name = '" + name1 + "';";
+        db.execSQL(sql);
+    }
+
+//    public void updateWHOutDate(String name1, String outDate1){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String sql = "UPDATE warehouseDB SET outDate = '" + outDate1 + "'WHERE name = '" + name1 + "';";
+//        db.execSQL(sql);
+//    }
+
+    public void updateIOOutDate(String name1, String outDate1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE inOutDB SET outDate = '" + outDate1 + "'WHERE name = '" + name1 + "';";
         db.execSQL(sql);
     }
 

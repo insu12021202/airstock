@@ -1,38 +1,23 @@
 package com.example.airstock;
 
-import static android.content.ContentValues.TAG;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
-public class StockSpec extends ReleasingStocks {
+public class WarehouseStockSpec extends PopUpStockInfo{
 
     EditText release_input;
     Button release_button;
 
     String id, name, count, inDate, outDate, inMemo, outMemo, inPrice, outPrice, receiveClient, isPositioned;
+    String positionIndex;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -51,15 +36,17 @@ public class StockSpec extends ReleasingStocks {
 
                 if (stockReleaseAmount < stockCount){
                     TextView countText = (TextView) findViewById(R.id.countText2);
+                    TextView isPositionedText = (TextView) findViewById(R.id.isPositionedText2);
                     count = String.valueOf(stockCount-stockReleaseAmount);
                     countText.setText(count);
+                    isPositionedText.setText(count);
 
-                    DBHelper myDB = new DBHelper(StockSpec.this);
+                    DBHelper myDB = new DBHelper(WarehouseStockSpec.this);
+                    myDB.changeWHCount(name, count);
                     myDB.changeCount(name, count);
                     myDB.updateIsPositioned(name, count);
                     myDB.updateOutDate(name, outDate);
                     myDB.updateIOOutDate(name, outDate);
-
 
                     Toast.makeText(getApplicationContext(), "출고되었습니다", Toast.LENGTH_SHORT).show();
                 }
@@ -70,10 +57,13 @@ public class StockSpec extends ReleasingStocks {
                     countText.setText(count);
                     isPositionedText.setText(count);
 
-                    DBHelper myDB = new DBHelper(StockSpec.this);
-                    myDB.deleteData(name);
+                    DBHelper myDB = new DBHelper(WarehouseStockSpec.this);
                     myDB.deleteWHData(name);
+                    myDB.changeCount(name, count);
+                    myDB.updateIsPositioned(name, count);
+                    myDB.updateOutDate(name, outDate);
                     myDB.updateIOOutDate(name, outDate);
+                    myDB.deleteIfZero(name); //선반 위 재고가 모든 재고일 때 모두 출고 -> 예외 처리
 
                     Toast.makeText(getApplicationContext(), "출고되었습니다.", Toast.LENGTH_SHORT).show();
 
@@ -82,7 +72,6 @@ public class StockSpec extends ReleasingStocks {
                     Toast.makeText(getApplicationContext(), "재고 수량보다 많이 출고할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 //어댑터 새로고침
-                customAdapter.updateStockListItems(stockList);
             }
         });
     }
@@ -96,17 +85,18 @@ public class StockSpec extends ReleasingStocks {
         String currentTime = formatTime.format(date);
 
         //Getting Data from Intent
-        id = getIntent().getStringExtra("id");
-        name = getIntent().getStringExtra("name");
-        count = getIntent().getStringExtra("count");
-        inDate = getIntent().getStringExtra("inDate");
-        outDate = getIntent().getStringExtra("outDate");
-        inMemo = getIntent().getStringExtra("inMemo");
-        outMemo = getIntent().getStringExtra("outMemo");
-        inPrice = getIntent().getStringExtra("inPrice");
-        outPrice = getIntent().getStringExtra("outPrice");
-        receiveClient = getIntent().getStringExtra("receiveClient");
-        isPositioned = getIntent().getStringExtra("isPositioned");
+        id = getIntent().getStringExtra("id2");
+        name = getIntent().getStringExtra("name2");
+        count = getIntent().getStringExtra("count2");
+        inDate = getIntent().getStringExtra("inDate2");
+        outDate = getIntent().getStringExtra("outDate2");
+        inMemo = getIntent().getStringExtra("inMemo2");
+        outMemo = getIntent().getStringExtra("outMemo2");
+        inPrice = getIntent().getStringExtra("inPrice2");
+        outPrice = getIntent().getStringExtra("outPrice2");
+        receiveClient = getIntent().getStringExtra("receiveClient2");
+        isPositioned = getIntent().getStringExtra("isPositioned2");
+        positionIndex = getIntent().getStringExtra("positionIndex");
 
         // 출고 날짜를 현재 날짜로 설정
         outDate = currentTime;
@@ -134,6 +124,4 @@ public class StockSpec extends ReleasingStocks {
         receiveClientText.setText(receiveClient);
         isPositionedText.setText(isPositioned);
     }
-
-
 }

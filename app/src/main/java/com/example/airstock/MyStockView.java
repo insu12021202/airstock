@@ -121,6 +121,7 @@ public class MyStockView extends AppCompatActivity {
             }
             else{
                 dragCount = Integer.parseInt(cursor.getString(1)) - Integer.parseInt(cursor.getString(3));
+                Log.d("왜 0이 나오지", String.valueOf(dragCount));
                 if(dragCount < 0) {
                     dragCount = 0;
                 }
