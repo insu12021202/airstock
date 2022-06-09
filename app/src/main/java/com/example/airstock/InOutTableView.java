@@ -99,8 +99,8 @@ public class InOutTableView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inout_table);
 
-        sql = "select name,count,inDate,outDate from contacts order by inDate";
-        sql2 = "select name,count,inDate,outDate from contacts order by outDate";
+        sql = "select name,count,inDate,outDate from inOutDB order by inDate";
+        sql2 = "select name,count,inDate,outDate from inOutDB order by outDate";
         //스피너 생성
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
