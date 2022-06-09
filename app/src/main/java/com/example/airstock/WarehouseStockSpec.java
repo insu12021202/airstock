@@ -56,12 +56,13 @@ public class WarehouseStockSpec extends PopUpStockInfo{
                     TextView countText = (TextView) findViewById(R.id.countText2);
                     TextView isPositionedText = (TextView) findViewById(R.id.isPositionedText2);
                     count = String.valueOf(stockCount-stockReleaseAmount);
+                    allCountAfter = String.valueOf(Integer.parseInt(allCount)-stockReleaseAmount);
                     countText.setText(count);
                     isPositionedText.setText(count);
 
                     DBHelper myDB = new DBHelper(WarehouseStockSpec.this);
                     myDB.deleteWHData(name);
-                    myDB.changeCount(name, count);
+                    myDB.changeCount(name, allCountAfter);
                     myDB.updateIsPositioned(name, count);
                     myDB.updateOutDate(name, outDate);
                     myDB.updateIOOutDate(name, outDate);
