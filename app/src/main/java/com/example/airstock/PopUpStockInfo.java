@@ -83,6 +83,7 @@ public class PopUpStockInfo extends Activity {
                     intent.putExtra("outPrice2", cursor3.getString(8));
                     intent.putExtra("receiveClient2", cursor3.getString(9));
                     intent.putExtra("isPositioned2", cursor3.getString(10));
+                    intent.putExtra("count3", cursor3.getString(2));
                 }
                 while(cursor4.moveToNext()){
                     intent.putExtra("count2", cursor4.getString(2));
