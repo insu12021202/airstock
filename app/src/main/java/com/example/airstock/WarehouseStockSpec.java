@@ -1,6 +1,7 @@
 package com.example.airstock;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
