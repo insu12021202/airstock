@@ -18,6 +18,7 @@ public class WarehouseStockSpec extends PopUpStockInfo{
 
     String id, name, count, inDate, outDate, inMemo, outMemo, inPrice, outPrice, receiveClient, isPositioned;
     String positionIndex;
+    String allCount, allCountAfter;
 
 
     @Override
@@ -32,19 +33,20 @@ public class WarehouseStockSpec extends PopUpStockInfo{
         release_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int stockReleaseAmount = Integer.parseInt(release_input.getText().toString());
-                int stockCount = Integer.parseInt(count);
+                int stockReleaseAmount = Integer.parseInt(release_input.getText().toString()); //2
+                int stockCount = Integer.parseInt(count); //32
 
                 if (stockReleaseAmount < stockCount){
                     TextView countText = (TextView) findViewById(R.id.countText2);
                     TextView isPositionedText = (TextView) findViewById(R.id.isPositionedText2);
                     count = String.valueOf(stockCount-stockReleaseAmount);
+                    allCountAfter = String.valueOf(Integer.parseInt(allCount)-stockReleaseAmount);
                     countText.setText(count);
                     isPositionedText.setText(count);
 
                     DBHelper myDB = new DBHelper(WarehouseStockSpec.this);
                     myDB.changeWHCount(name, count);
-                    myDB.changeCount(name, count);
+                    myDB.changeCount(name, allCountAfter);
                     myDB.updateIsPositioned(name, count);
                     myDB.updateOutDate(name, outDate);
                     myDB.updateIOOutDate(name, outDate);
@@ -98,6 +100,7 @@ public class WarehouseStockSpec extends PopUpStockInfo{
         receiveClient = getIntent().getStringExtra("receiveClient2");
         isPositioned = getIntent().getStringExtra("isPositioned2");
         positionIndex = getIntent().getStringExtra("positionIndex");
+        allCount = getIntent().getStringExtra("count3");
 
         // 출고 날짜를 현재 날짜로 설정
         outDate = currentTime;
