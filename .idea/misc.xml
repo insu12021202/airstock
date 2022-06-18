@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/my_stock.xml" value="0.1863174880760303" />
         <entry key="app/src/main/res/layout/popup_mystock.xml" value="0.17300724637681159" />
         <entry key="app/src/main/res/layout/recieve_stocks.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/release_stocks.xml" value="0.1" />
         <entry key="app/src/main/res/layout/specific_stocks.xml" value="0.17300724637681159" />
       </map>
     </option>
